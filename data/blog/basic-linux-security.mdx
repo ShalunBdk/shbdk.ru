@@ -1,0 +1,174 @@
+---
+title: 'Базовая настройка безопасности Linux Server'
+date: '2025-05-26'
+lastmod: '2025-05-26'
+tags: ['linux', 'security']
+summary: 'Полное руководство по установке и настройке KMS сервера для активации продуктов Microsoft'
+images: ['/static/images/blog/linux/linux-security.jpg']
+authors: ['default']
+---
+
+## ШАГ 1: Настройка базовой безопасности сервера
+
+### 1. Обновление системы
+
+```bash
+
+sudo apt update && sudo apt upgrade -y
+
+```
+
+### 2. Установка базовых утилит
+
+```bash
+
+sudo apt install ufw curl wget git fail2ban -y
+
+```
+
+### 3. Настройка `ufw` (фаервол)
+
+Заблокируем все входящие, разрешим только SSH, HTTP, HTTPS и порты, которые будем использовать.
+
+```bash
+
+sudo ufw default deny incoming
+
+sudo ufw default allow outgoing
+
+sudo ufw allow OpenSSH
+
+sudo ufw allow http
+
+sudo ufw allow https
+
+# Пример: если будешь использовать порт 8000
+
+sudo ufw allow 8000/tcp
+
+sudo ufw enable
+
+```
+
+Проверь статус:
+
+```bash
+
+sudo ufw status
+
+```
+
+### 4. Настройка Fail2Ban (защита от брутфорса)
+
+Fail2Ban автоматически блокирует IP после нескольких неудачных попыток входа.
+
+```bash
+
+sudo systemctl enable fail2ban
+
+sudo systemctl start fail2ban
+
+```
+
+Файл конфигурации: `/etc/fail2ban/jail.local` (может потребовать создания).
+
+Пример минимального содержания:
+
+```ini
+
+[DEFAULT]
+
+bantime = 86400
+
+findtime = 600
+
+maxretry = 5
+
+
+
+[sshd]
+
+enabled = true
+
+```
+
+## ШАГ 2: Создание безопасного пользователя
+
+Не работай под root! Создай своего пользователя:
+
+```bash
+
+adduser your_username
+
+usermod -aG sudo your_username
+
+su - your_username
+
+```
+
+(замените `your_username` на желаемое имя)
+
+Выходи из под root и дальше работай от имени нового пользователя.
+
+## ШАГ 3: Отключение входа по паролю и включение SSH-ключей
+
+Создай SSH-ключ локально (если ещё не создавал):
+
+```powershell
+
+ssh-keygen
+
+```
+
+Загрузи свой публичный ключ (`%USERPROFILE%/.ssh/id_ed25519.pub`) на сервер в файл:
+
+```bash
+
+~/.ssh/authorized_keys
+
+```
+
+Убедись, что права установлены правильно:
+
+```bash
+
+mkdir -p ~/.ssh
+
+chmod 700 ~/.ssh
+
+chmod 600 ~/.ssh/authorized_keys
+
+```
+
+Теперь отключи вход по паролю:
+
+```bash
+
+sudo nano /etc/ssh/sshd_config
+
+```
+
+Измени следующие параметры:
+
+```conf
+
+PasswordAuthentication no
+
+PermitRootLogin no
+
+ChallengeResponseAuthentication no
+
+UsePAM no
+
+```
+
+Перезапусти SSH:
+
+```bash
+
+sudo systemctl restart sshd
+
+```
+
+> [!warning]
+> Проверь, что ты можешь зайти через ключ, прежде чем закрывать текущую сессию!

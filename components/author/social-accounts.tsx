@@ -1,15 +1,15 @@
 import { clsx } from 'clsx'
 import { SITE_METADATA } from '~/data/site-metadata'
 import {
-    IconBrandX,
-    IconBrandTelegram,
-    IconBrandVk,
-    IconBrandGithub,
-    IconBrandInstagram,
-    IconMail,
-    IconBrandLinkedin,
-    IconBrandYoutube,
-  } from '@tabler/icons-react';
+  IconBrandX,
+  IconBrandTelegram,
+  IconBrandVk,
+  IconBrandGithub,
+  IconBrandInstagram,
+  IconMail,
+  IconBrandLinkedin,
+  IconBrandYoutube,
+} from '@tabler/icons-react'
 
 export function SocialAccounts({ className }: { className?: string }) {
   return (
@@ -45,26 +45,6 @@ export function SocialAccounts({ className }: { className?: string }) {
         <IconBrandVk strokeWidth={1.5} />
       </a>
       <a
-        href={SITE_METADATA.x}
-        target="_blank"
-        data-umami-event="contact-twitter"
-        className="text-gray-900 hover:text-gray-500 dark:text-gray-100 dark:hover:text-gray-400"
-        rel="noopener noreferrer"
-      >
-        <span className="sr-only">X</span>
-        <IconBrandX strokeWidth={1.5} />
-      </a>
-      <a
-        href={SITE_METADATA.linkedin}
-        target="_blank"
-        data-umami-event="contact-linkedin"
-        className="text-gray-900 hover:text-blue-400 dark:text-gray-100 dark:hover:text-blue-300"
-        rel="noopener noreferrer"
-      >
-        <span className="sr-only">Linkedin</span>
-        <IconBrandLinkedin strokeWidth={1.5} />
-      </a>
-      <a
         href={`mailto:${SITE_METADATA.email}`}
         target="_self"
         data-umami-event="contact-mail"
@@ -73,26 +53,6 @@ export function SocialAccounts({ className }: { className?: string }) {
       >
         <span className="sr-only">Mail</span>
         <IconMail strokeWidth={1.5} />
-      </a>
-      <a
-        href={SITE_METADATA.instagram}
-        target="_self"
-        data-umami-event="contact-instagram"
-        className="text-gray-900 hover:text-pink-500 dark:text-gray-100 dark:hover:text-pink-400"
-        rel="noopener noreferrer"
-      >
-        <span className="sr-only">Facebook</span>
-        <IconBrandInstagram strokeWidth={1.5} />
-      </a>
-      <a
-        href={SITE_METADATA.youtube}
-        target="_self"
-        data-umami-event="contact-youtube"
-        className="text-gray-900 hover:text-red-500 dark:text-gray-100 dark:hover:text-red-400"
-        rel="noopener noreferrer"
-      >
-        <span className="sr-only">Youtube</span>
-        <IconBrandYoutube strokeWidth={1.5} />
       </a>
     </div>
   )

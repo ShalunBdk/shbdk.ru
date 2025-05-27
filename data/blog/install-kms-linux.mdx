@@ -1,0 +1,180 @@
+---
+title: 'Microsoft KMS Server на Linux'
+date: '2025-05-26'
+lastmod: '2025-05-26'
+tags: ['windows', 'office']
+summary: 'Полное руководство по установке и настройке KMS сервера для активации продуктов Microsoft'
+images: ['/static/images/blog/windows/windows_kms.png']
+authors: ['default']
+---
+
+# Microsoft KMS Server
+
+> [!warning]
+> Данный материал предоставляется исключительно в образовательных и ознакомительных целях. Автор не призывает к нарушению лицензионных соглашений Microsoft или других правообладателей. Использование KMS-сервера должно осуществляться только в соответствии с приобретенными лицензиями и действующим законодательством. Перед внедрением описанного решения убедитесь, что ваша организация обладает необходимыми лицензиями на использование программного обеспечения Microsoft.
+
+## Обзор сервера
+
+KMS-сервер предназначен для централизованной активации продуктов Microsoft в корпоративной сети без необходимости подключения к серверам активации Microsoft.
+
+> [!tip]
+> При использовании данного KMS-сервера продукты Microsoft получают полную функциональность, включая установку обновлений. Microsoft не блокирует лицензию, так как за неё отвечает локальный сервер.
+
+## Развертывание KMS сервера
+
+### Необходимое ПО
+
+- [vlmcsd](https://github.com/Wind4/vlmcsd) - KMS эмулятор
+- [Ubuntu Server 24.04](https://mirror.truenetwork.ru/ubuntu-releases/22.04.1/ubuntu-22.04.1-live-server-amd64.iso)
+
+### Пошаговая установка
+
+#### 1. Установка необходимых пакетов
+
+```bash
+sudo apt update
+sudo apt install git gcc
+```
+
+#### 2. Загрузка и компиляция пакета vlmcsd
+
+```bash
+git clone https://github.com/Wind4/vlmcsd
+cd vlmcsd
+make
+```
+
+#### 3. Запуск KMS сервера
+
+```bash
+cd bin
+./vlmcsd
+```
+
+#### 4. Настройка брандмауэра
+
+```bash
+sudo apt install firewalld
+firewall-cmd --zone=public --permanent --add-port=1688/tcp
+firewall-cmd --reload
+```
+
+#### 5. Проверка открытых портов
+
+```bash
+firewall-cmd --list-port
+# Должен быть 1688/tcp
+
+netstat -ntlp | grep LISTEN
+# Должен быть 0.0.0.0:1688
+```
+
+#### 6. Настройка автозапуска службы
+
+Копирование исполняемых файлов:
+
+```bash
+cp vlmcsd /usr/bin
+cp vlmcs /usr/bin
+touch /etc/systemd/system/kms-script.service
+chmod 664 /etc/systemd/system/kms-script.service
+```
+
+#### 7. Создание файла службы
+
+Создайте файл `/etc/systemd/system/kms-script.service`:
+
+```bash
+nano /etc/systemd/system/kms-script.service
+```
+
+Содержимое файла:
+
+```ini
+[Unit]
+Description=Microsoft KMS Server
+After=network.target
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/vlmcsd
+RemainAfterExit=yes
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+```
+
+#### 8. Активация и запуск службы
+
+```bash
+systemctl daemon-reload
+systemctl start kms-script.service
+systemctl status kms-script.service
+systemctl enable kms-script.service
+```
+
+## Активация клиентских систем
+
+### Ключи для активации
+
+> [!warning]
+> Ниже приведены публично доступные ключи LTSC. Используйте их только в соответствии с лицензионной политикой вашей организации.
+
+| Продукт             | Ключ активации                  |
+| ------------------- | ------------------------------- |
+| Windows 10-11 PRO   | `W269N-WFGWX-YVC9B-4J6C9-T83GX` |
+| Windows Server 2022 | `VDYBN-27WPP-V4HQT-9VMD4-VMK7H` |
+| Windows Server 2019 | `N69G4-B89J2-4G8F4-WWYCC-J464C` |
+| Windows Server 2016 | `WC2BQ-8NRM3-FDDYY-2BFGV-KHKQY` |
+| Office              | `FXYTK-NJJ8C-GB6DW-3DYQT-6F7TH` |
+| Visio               | `KNH8D-FGHT4-T8RK3-CTDYJ-K2HT4` |
+| Project             | `FTNWT-C6WBT-8HMGF-K9PRX-QV9H8` |
+
+### Активация Windows
+
+> [!note]
+> Выполните следующие команды в командной строке с правами администратора:
+
+```cmd
+slmgr.vbs -ipk "ключ"
+# Указать ключ из таблицы выше
+
+slmgr.vbs -skms sv-bsk-kms
+# Указать адрес KMS сервера
+
+slmgr.vbs -ato
+# Активировать Windows
+
+slmgr.vbs /xpr
+# Проверить срок действия лицензии
+```
+
+### Активация Office 2021
+
+> [!note]
+> Выполните следующие команды в командной строке с правами администратора:
+
+```cmd
+cd "C:\Program Files\Microsoft Office\Office16"
+cscript ospp.vbs /sethst:sv-bsk-kms
+cscript ospp.vbs /act
+```
+
+Для проверки статуса лицензии Office:
+
+```cmd
+cscript ospp.vbs /dstatusall
+```
+
+## Технические детали
+
+- **Порт**: KMS использует TCP порт 1688
+- **Период активации**: По умолчанию активация действует 180 дней и автоматически продлевается при наличии связи с KMS сервером
+- **Требования**: Клиентские системы должны иметь сетевой доступ к KMS серверу по порту 1688
+
+## Дополнительные ресурсы
+
+- [Официальный репозиторий vlmcsd](https://github.com/Wind4/vlmcsd)

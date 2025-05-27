@@ -1,21 +1,13 @@
 <h1 align="center">Личный блог</h1>
 <p align="center"><i>Этот сайт создан для публикации некоторых заметок на различные IT темы из моего хранилища Obsidian.</i></p>
 
-<div align="center">
-    <a href="https://github.com/metgen/metalnikovg.ru/stargazers"><img src="https://img.shields.io/github/stars/metgen/metalnikovg.ru" alt="Stars Badge"/></a>
-    <a href="https://github.com/metgen/metalnikovg.ru/network/members"><img src="https://img.shields.io/github/forks/metgen/metalnikovg.ru" alt="Forks Badge"/></a>
-    <a href="https://github.com/metgen/metalnikovg.ru/pulls"><img src="https://img.shields.io/github/issues-pr/metgen/metalnikovg.ru" alt="Pull Requests Badge"/></a>
-    <a href="https://github.com/metgen/metalnikovg.ru/issues"><img src="https://img.shields.io/github/issues/metgen/metalnikovg.ru" alt="Issues Badge"/></a>
-    <a href="https://github.com/metgen/metalnikovg.ru/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/metgen/metalnikovg.ru?color=2b9348"></a>
-    <a href="https://github.com/metgen/metalnikovg.ru/blob/main/LICENSE"><img src="https://img.shields.io/github/license/metgen/metalnikovg.ru?color=2b9348" alt="License Badge"/></a>
-</div>
 <br>
-<p align="center"><i>Посетите <a href="https://www.metalnikovg.ru">вебсайт</a> проекта</i></p>
+<p align="center"><i>Посетите <a href="https://www.shbdk.ru">вебсайт</a> проекта</i></p>
 <br>
 
 ## Вебсайт
 
-<a href="https://www.metalnikovg.ru"><img src="https://raw.githubusercontent.com/metgen/metalnikovg.ru/main/public/static/images/projects/site_screen.png" alt="metalnikovg.ru" /></a>
+<a href="https://www.shbdk.ru"><img src="https://raw.githubusercontent.com/shalunbdk/shbdk.ru/main/public/static/images/projects/site_screen.png" alt="shbdk.ru" /></a>
 
 ## Технический стек
 
@@ -65,7 +57,7 @@ yarn build
 
 ---
 
-<p align="center"><b>Copyright © 2024 - Metalnikovg.ru - Цифровой сад</b></p>
+<p align="center"><b>Copyright © 2024 - shbdk.ru - Цифровой сад</b></p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->

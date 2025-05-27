@@ -10,7 +10,9 @@ import {
   // IconBrandInstagram,
   IconMail,
   IconBrandLinkedin,
-} from '@tabler/icons-react';
+  IconBrandVk,
+  IconBrandTelegram,
+} from '@tabler/icons-react'
 
 function getAccountHandle(url = '') {
   let lastPart = url.split('/').pop()
@@ -29,32 +31,30 @@ const SOCIALS = [
     umamiEvent: 'profile-card-github',
   },
   {
-    platform: 'linkedin',
-    handle: getAccountHandle(SITE_METADATA.linkedin),
-    href: SITE_METADATA.linkedin,
-    Icon: () => <IconBrandLinkedin size={20} strokeWidth={1.5} />,
-    umamiEvent: 'profile-card-linkedin',
+    platform: 'vk',
+    handle: getAccountHandle(SITE_METADATA.telegram),
+    href: SITE_METADATA.telegram,
+    Icon: () => <IconBrandTelegram size={20} strokeWidth={1.5} />,
+    umamiEvent: 'profile-card-telegram',
   },
 ]
 
 export function ProfileCardInfo() {
   return (
     <div className="hidden py-4 md:block md:px-5">
-      <h3 className="text-xl font-semibold text-gray-800 dark:text-white">Метальников Геннадий</h3>
+      <h3 className="text-xl font-semibold text-gray-800 dark:text-white">Шалин Александр</h3>
       <h5 className="py-2 text-gray-500 dark:text-gray-400">Информация и контакты:</h5>
       <div className="mb-2 mt-4 space-y-4">
         <div className="flex items-center text-gray-700 dark:text-gray-200">
           <IconBriefcase strokeWidth={1.5} size={20} />
-          <p className="flex items-center px-2">
-            IT - специалист
-          </p>
+          <p className="flex items-center px-2">IT - специалист</p>
         </div>
         <div className="flex items-center text-gray-700 dark:text-gray-200">
           <IconMapPin strokeWidth={1.5} size={20} />
           <p className="px-2">
-            Санкт-Петербург, Россия
+            Бердск, Новосибирская обл, Россия
             <span className="absolute ml-1 inline-flex pt-px">
-            <Twemoji emoji="russia-flag" />
+              <Twemoji emoji="russia-flag" />
             </span>
           </p>
         </div>

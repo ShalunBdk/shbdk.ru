@@ -6,7 +6,7 @@ export const HEADER_NAV_LINKS = [
 ]
 
 export const MORE_NAV_LINKS = [
-  { href: 'https://gallery.metalnikovg.ru/', title: 'Галлерея' , emoji: 'film-frames' },
+  { href: 'https://defaultdomain.ru/', title: 'Резюме', emoji: 'spiral-notepad' },
   { href: '/tags', title: 'Теги', emoji: 'label' },
 ]
 

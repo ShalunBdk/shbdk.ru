@@ -6,8 +6,8 @@ export const PROJECTS: Project[] = [
     title: 'Персональный веб-сайт',
     description: 'Заметки по IT тематике',
     imgSrc: '/static/images/projects/site_screen.png',
-    repo: 'metgen/metalnikovg.ru',
-    // url: 'https://www.metalnikovg.ru/', //
+    repo: 'shalulbdk/shbdk.ru',
+    // url: 'https://www.shbdk.ru/', //
     builtWith: ['NextJS', 'Tailwind_CSS', 'Typescript', 'Umami'],
   },
   {

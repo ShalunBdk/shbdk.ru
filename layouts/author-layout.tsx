@@ -73,7 +73,7 @@ export function AuthorLayout({ children, content }: Props) {
                 Привет! <Twemoji emoji="waving-hand" />
               </h2>
               <p>
-                Меня зовут <strong>Геннадий</strong>, и это мой личный блог.{' '}
+                Меня зовут <strong>Александр</strong>, и это мой личный блог.{' '}
               </p>
               <p>Я работаю в сефре IT, стараюсь учиться и получать новые знания в этой области.</p>
               <p>
@@ -81,12 +81,12 @@ export function AuthorLayout({ children, content }: Props) {
                 разрабатываю и изучаю различные OpenSource проекты.
               </p>
               Интересные для меня направления:
-              <li>Администрирование: Linux, Windows, Mac OS</li>
-              <li>Автоматизация: bash, powershell скриптинг</li>
-              <li>Оркестрация/контейнеризация: Docker/Swarm, Kubernetes</li>
+              <li>Администрирование: Linux, Windows</li>
+              <li>Автоматизация: python, powershell, bash</li>
+              <li>Оркестрация/контейнеризация: Docker/Swarm, Consul</li>
               <li>Мониторинг: Prometheus, Zabbix, Grafana</li>
               <li>Системы виртуализации: KVM, LXC, Hyper-V</li>
-              <li>Сети: TCP/IP, DHCP, DNS, VPN, BGP, PROXY</li>
+              <li>Сети: TCP/IP, VLANs, QoS, VPN</li>
             </div>
             <div>
               <h2>Цель этого сайта</h2>
@@ -163,45 +163,14 @@ export function AuthorLayout({ children, content }: Props) {
                 .
               </p>
               <p>
-                Некоторые идеи были позаимствованы у{' '}
-                <a href="https://github.com/timlrx" target="_blank">
-                  Timothy Lin
+                Сайт был взят у{' '}
+                <a href="https://github.com/metgen/metalnikovg.ru/tree/main" target="_blank">
+                  metalnikovg
                 </a>{' '}
-                и других контрибьютеров.
               </p>
-              <p>Несколько мажорых изменений по сравнению с исодным репозиторием:</p>
-              <ul>
-                <li>
-                  <Twemoji emoji="atom-symbol" /> Обновление до <strong>React v19</strong>,{' '}
-                  <strong>Next v15</strong>
-                </li>
-                <li>
-                  <Twemoji emoji="bar-chart" /> Мониторинг сайта с помощью web аналитики{' '}
-                  <a href="https://umami.is/" target="_blank">
-                    Umami
-                  </a>{' '}
-                </li>
-                <li>
-                  <Twemoji emoji="eyes" /> Внесены небольшие изменения в тему, иконки и структуру
-                  сайта.
-                </li>
-                <li>
-                  <Twemoji emoji="man-technologist" /> Этот веб-сайт использует дизайн и код из
-                  репозитория{' '}
-                  <a href="https://github.com/timlrx/tailwind-nextjs-starter-blog" target="_blank">
-                    tailwind-nextjs-starter-blog
-                  </a>{' '}
-                  и включает шаблон tailwind-nextjs-starter-blog, версии 2.0.
-                </li>
-                {/* <li>
-                  <Twemoji emoji="inbox-tray" /> Bumping up <code>mdx-bundler</code>,{' '}
-                  <code>rehype</code>/<code>remark</code> plugins and dependencies to the latest
-                  version
-                </li> */}
-              </ul>
               <p>
                 Мой{' '}
-                <a href="https://github.com/metgen/metalnikovg.ru" target="_blank">
+                <a href="https://github.com/shalunbdk/shbdk.ru" target="_blank">
                   Github репозиторий
                 </a>{' '}
                 для этого сайта.

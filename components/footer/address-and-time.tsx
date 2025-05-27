@@ -5,9 +5,9 @@ import { GrowingUnderline } from '~/components/ui/growing-underline'
 import { Link } from '~/components/ui/link'
 import { Twemoji } from '~/components/ui/twemoji'
 
-const TIME_IS = 'https://time.is/Saint_Petersburg'
-const MY_TIMEZONE = 'Europe/Moscow'
-const MY_TIMEZONE_OFFSET = 3 * -60 // UTC+3
+const TIME_IS = 'https://time.is/Novosibirsk'
+const MY_TIMEZONE = 'Asia/Novosibirsk'
+const MY_TIMEZONE_OFFSET = 7 * -60 // UTC+3
 
 function getTime() {
   let date = new Date()
@@ -37,7 +37,7 @@ export function AddressAndTime() {
       <div className="flex items-center gap-2">
         <Map className="h-5 w-5" />
         <span className="font-medium">
-          Санкт-Петербург <Twemoji emoji="russia-flag" className="!h-4.5" />
+          Новосибирск <Twemoji emoji="russia-flag" className="!h-4.5" />
         </span>
       </div>
       <div className="flex items-center gap-2">
