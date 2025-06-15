@@ -1,0 +1,190 @@
+---
+title: 'Полная установка Arch с byedpi и VLESS VPN'
+date: '2025-06-15'
+lastmod: '2025-06-15'
+tags: ['linux', 'vless', 'arch']
+summary: 'Полное руководство по установке установка Arch Linux с byedpi и VLESS VPN клиентом'
+images: ['/static/images/blog/linux/arch_byedpi.jpg']
+authors: ['default']
+---
+
+## Установка Arch
+1. Качаем ISO и записываем на флешку с помощью balenaEtcher
+2. Запускаемся с флешки и пишем
+```bash
+archinstall
+```
+3. Выбираем Disk Configuration -> Partitioning -> User a best... -> выбираем диск -> ext4 -> Back
+4. Bootloader по желанию, я ставлю grub
+5. Hostname по желанию
+6. Задаём Root Password
+7. Создаем User Account
+8. Audio обычно хорошо работает pulseaudio
+9. Network -> Copy ISO network
+10. В конце нажимаем Install и Yes, ждём установки и перезагружаемся без флешки
+
+## Установка KDE Plasma
+1.  Обновляем пакеты
+```bash
+sudo pacman -Syu
+```
+2. Устанавливаем xorg
+```bash
+sudo pacman -S xorg
+```
+На все вопросы нажимаем Enter
+3.  Устанавливаем sddm
+```bash
+sudo pacman -S sddm
+sudo systemctl enable sddm
+```
+На все вопросы нажимаем Enter
+4. Устанавливаем KDE
+```bash
+sudo pacman -S plasma kde-applications
+```
+На все вопросы нажимаем Enter
+5. После установки перезагружаемся
+6. После загрузки закрываем окно приветствия, идём в терминал и пишем
+```bash
+sudo pacman -S fastfetch
+fastfetch
+```
+И делаем скрин, что вы крутой и сидите на arch linux
+
+## Установка zsh вместо bash
+1. Ставим пакет
+```bash
+sudo pacman -S zsh git nano
+```
+2. Ставим конфиг [oh-my-zsh](https://github.com/oben-arch/oh-my-zsh)
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+3. Ставим основной оболочкой zsh
+```bash
+chsh -s /usr/bin/zsh
+sudo chsh -s /usr/bin/zsh
+```
+4. Установка доп. пакетов по желанию([подсветка синтаксиса](https://github.com/zsh-users/zsh-syntax-highlighting) и [авто дополнение команд на основе истории](https://github.com/zsh-users/zsh-autosuggestions/))
+```bash
+echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+sudo nano ~/.zshrc
+```
+Ищем там plugins и через пробел добавляем zsh-autosuggestions
+```bash
+plugins = (... zsh-autosuggestions)
+```
+5. Обновить конфигурацию оболочки и перезагрузиться
+```bash
+source .zshrc
+sudo reboot now
+```
+
+## Установка byedpi
+1. Ставим DNS resolver, без него не работает
+```bash
+sudo pacman -S dnsmasq
+sudo systemctl enable dnsmasq && systemctl start dnsmasq
+```
+Если ошибки, возможно занят порт 53
+Смотрим кто его занял и сносим его
+```
+sudo ss -tulpn | grep ':53'
+# Смотрим, что это за сервис и вырубаем его, например systemd-resolved
+sudo systemctl stop systemd-resolved
+sudo systemctl disable systemd-resolved
+```
+2. Настраиваем конфиг
+```bash
+sudo nano /etc/dnsmasq.conf
+```
+2. Вставляем в конец конфига
+```bash
+listen-address=::1,127.0.0.1
+cache-size=1000
+no-resolv
+server=8.8.8.8
+server=8.8.4.4
+```
+3. Настраиваем конфиг `/etc/resolv.conf`:
+```bash
+nameserver ::1
+nameserver 127.0.0.1
+options trust-ad
+```
+4. Всё применяем
+```bash
+chattr +i /etc/resolv.conf
+systemctl restart dnsmasq
+```
+4. Клонируем репозиторий и собираем
+```bash
+git clone https://github.com/hufrea/byedpi.git
+cd byedpi
+make
+```
+2. Проверяем работу конфига
+```bash
+.\ciadpi --ip 127.0.0.1 --port 18081 --disorder 2 --tlsrec 3+sni
+```
+В браузере ищем настройки прокси и ставим SOCKS ip и порт из конфига
+3. Если не работает идём в [гитхаб](https://github.com/hufrea/byedpi/discussions) и ищем рабочий конфиг
+   UPD Из комментов в гитхабе новый рабочий способ такой:
+   Создаём 2 файла dom_tlsrec.txt и dom_fakesni.txt
+   В dom_tlsrec.txt пишем:
+```txt
+googlevideo.com  
+youtube.com  
+youtu.be  
+ytimg.com  
+ggpht.com
+```
+В dom_fakesni.txt пишем:
+```txt
+lmstudio.ai  
+transfer.xethub.hf.co  
+cas-bridge.xethub.hf.co  
+hf.co  
+cloudflare-ech.com  
+a.nel.cloudflare.com  
+soundcloud.com  
+soundcloud.cloud
+```
+Запускаем через
+```bash
+.\ciadpi --hosts ./dom_tlsrec.txt -o1 --tlsrec -5+se -An --hosts ./dom_fakesni.txt -f-1 -t7 -n www.google.com
+```
+4. Если конфиг заработал и ютуб грузится, то ставим как службу
+```bash
+sudo nano /etc/ssystemd/system/byedpi.service
+```
+В файле пишем
+```bash
+[Unit]
+Description=ByeDPI
+After=graphical.target
+
+[Service]
+ExecStart=/home/[username]/byedpi/ciadpi  --hosts /home/[username]/byedpi/dom_tlsrec.txt -o1 --tlsrec -5+se -An --hosts /home/[username]/byedpi/dom_fakesni.txt -f-1 -t7 -n www.google.com
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
+
+[Install]
+WantedBy=graphical.target
+```
+И включаем
+```bash
+sudo systemctl enable byedpi
+sudo systemctl start byedpi
+```
+
+## Установка VLESS клиента NekoBox
+1. Качаем с [репозитория](https://github.com/Mahdi-zarei/nekoray/releases) установщик на arch берём linux64.zip
+2. Распаковываем и запускаем nekobox
+3. Вкладка Programm -> Preferences -> Basic Settings -> Style -> Language Русский
+4. Копируем строку подключения и в программе нажимаем Сервер -> Добавить профиль из буфера обмена
+5. Нажимаем галочку сверху "Режим TUN", после этого можно выбрать сервер.
+6. Во вкладке Программа можно установить автозапуск
