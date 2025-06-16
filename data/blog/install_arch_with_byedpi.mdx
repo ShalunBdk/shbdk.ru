@@ -154,7 +154,7 @@ soundcloud.cloud
 ```
 Запускаем через
 ```bash
-.\ciadpi --hosts ./dom_tlsrec.txt -o1 --tlsrec -5+se -An --hosts ./dom_fakesni.txt -f-1 -t7 -n www.google.com
+./ciadpi --ip 127.0.0.1 --port 18081 --hosts ./dom_tlsrec.txt -o1 --tlsrec -5+se -An --hosts ./dom_fakesni.txt -f-1 -t7 -n www.google.com
 ```
 4. Если конфиг заработал и ютуб грузится, то ставим как службу
 ```bash
@@ -167,7 +167,7 @@ Description=ByeDPI
 After=graphical.target
 
 [Service]
-ExecStart=/home/[username]/byedpi/ciadpi  --hosts /home/[username]/byedpi/dom_tlsrec.txt -o1 --tlsrec -5+se -An --hosts /home/[username]/byedpi/dom_fakesni.txt -f-1 -t7 -n www.google.com
+ExecStart=/home/[username]/byedpi/ciadpi --ip 127.0.0.1 --port 18081 --hosts /home/[username]/byedpi/dom_tlsrec.txt -o1 --tlsrec -5+se -An --hosts /home/[username]/byedpi/dom_fakesni.txt -f-1 -t7 -n www.google.com
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=always
