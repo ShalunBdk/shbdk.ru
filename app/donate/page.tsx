@@ -4,7 +4,7 @@ export const metadata = {
 
 export default function DonatePage() {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '80vh', justifyContent: 'center' }}>
+        <div className="dark:border-gray-700" style={{ colorScheme: 'light', display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '80vh', justifyContent: 'center' }}>
             {/* <h1 style={{ marginBottom: 24, fontSize: 32, fontWeight: 700 }}>Сбор средств</h1> */}
             <iframe
                 src="https://donate.stream/widget-goal?uid=92e754abac014186bf3bbbe5df4ad805&amp;token=70K9utuJ1GWH4GVnMZmOsYQyIB1ECytzLLjjzZxH7D"
