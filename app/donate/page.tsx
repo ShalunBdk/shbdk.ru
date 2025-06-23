@@ -5,13 +5,13 @@ export const metadata = {
 export default function DonatePage() {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '80vh', justifyContent: 'center' }}>
-            <h1 style={{ marginBottom: 24, fontSize: 32, fontWeight: 700 }}>Сбор средств</h1>
+            {/* <h1 style={{ marginBottom: 24, fontSize: 32, fontWeight: 700 }}>Сбор средств</h1> */}
             <iframe
                 src="https://donate.stream/widget-goal?uid=92e754abac014186bf3bbbe5df4ad805&amp;token=70K9utuJ1GWH4GVnMZmOsYQyIB1ECytzLLjjzZxH7D"
                 id="donate-widget"
                 frameBorder="0"
                 scrolling="no"
-                style={{ height: 30, width: '70%' }}
+                style={{ height: 90, width: '70%' }}
             />
             <a
                 href="https://donate.stream/shbdk"
