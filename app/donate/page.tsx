@@ -9,7 +9,7 @@ export default function DonatePage() {
             <iframe
                 src="https://donate.stream/widget-goal?uid=92e754abac014186bf3bbbe5df4ad805&amp;token=70K9utuJ1GWH4GVnMZmOsYQyIB1ECytzLLjjzZxH7D"
                 id="donate-widget"
-                frameborder="0"
+                frameBorder="0"
                 scrolling="no"
                 style={{ height: 30, width: '100%' }}
             />
