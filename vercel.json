@@ -4,5 +4,16 @@
       "source": "/stats/:match*",
       "destination": "https://eu.umami.is/:match*"
     }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-src giscus.app *.github.io https://donate.stream  https:; default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'"
+        }
+      ]
+    }
   ]
 }
