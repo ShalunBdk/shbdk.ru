@@ -11,7 +11,7 @@ export default function DonatePage() {
                 id="donate-widget"
                 frameBorder="0"
                 scrolling="no"
-                style={{ height: 30, width: '100%' }}
+                style={{ height: 30, width: '70%' }}
             />
             <a
                 href="https://donate.stream/shbdk"
