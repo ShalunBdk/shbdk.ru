@@ -47,7 +47,7 @@ export function ProfileCardInfo() {
       <div className="mb-2 mt-4 space-y-4">
         <div className="flex items-center text-gray-700 dark:text-gray-200">
           <IconBriefcase strokeWidth={1.5} size={20} />
-          <p className="flex items-center px-2">IT - специалист</p>
+          <p className="flex items-center px-2">Системный администратор/DevOps</p>
         </div>
         <div className="flex items-center text-gray-700 dark:text-gray-200">
           <IconMapPin strokeWidth={1.5} size={20} />
