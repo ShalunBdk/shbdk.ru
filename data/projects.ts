@@ -3,6 +3,14 @@ import type { Project } from '~/types/data'
 export const PROJECTS: Project[] = [
   {
     type: 'work',
+    title: 'Tasting Platform',
+    description: 'Платформа для проведения внутренних дегустаций с аналитикой и интеграцией Bitrix24',
+    imgSrc: '/static/images/projects/tasting-platform.png',
+    repo: 'shalunbdk/tasting-platform',
+    builtWith: ['React', 'Typescript', 'Express', 'PostgreSQL', 'Docker', 'Tailwind_CSS'],
+  },
+  {
+    type: 'work',
     title: 'Персональный веб-сайт',
     description: 'Заметки по IT тематике',
     imgSrc: '/static/images/projects/site_screen.png',
