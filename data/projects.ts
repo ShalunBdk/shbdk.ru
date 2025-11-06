@@ -11,6 +11,14 @@ export const PROJECTS: Project[] = [
   },
   {
     type: 'work',
+    title: 'Soroka Food',
+    description: 'Fullstack кулинарный блог с админ-панелью, модерацией комментариев и защитой от спама',
+    imgSrc: '/static/images/projects/soroka-food.png',
+    repo: 'shalunbdk/soroka-food',
+    builtWith: ['React', 'Typescript', 'Express', 'PostgreSQL', 'Prisma', 'Docker', 'Redis'],
+  },
+  {
+    type: 'work',
     title: 'Персональный веб-сайт',
     description: 'Заметки по IT тематике',
     imgSrc: '/static/images/projects/site_screen.png',
