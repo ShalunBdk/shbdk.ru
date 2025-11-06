@@ -1,7 +1,6 @@
 import { clsx } from 'clsx'
-import { AreaChart, Rss } from 'lucide-react'
+import { Rss } from 'lucide-react'
 import { Link } from '~/components/ui/link'
-import { SITE_METADATA } from '~/data/site-metadata'
 import { BuiltWith } from './built-with'
 import { SpotifyNowPlaying } from '~/components/ui/now-playing'
 export function FooterBottom() {
@@ -28,14 +27,6 @@ export function FooterBottom() {
         <span className="mx-2.5 text-gray-400">|</span>
         <Link href="/feed.xml" aria-label="RSS Feed" data-umami-event="rss-feed" prefetch={false}>
           <Rss strokeWidth={1.5} size={20} />
-        </Link>
-        <Link
-          href={SITE_METADATA.analytics.umamiAnalytics.shareUrl}
-          aria-label="Open analytics"
-          data-umami-event="footer-analytics"
-          className="ml-2"
-        >
-          <AreaChart strokeWidth={1.5} size={22} />
         </Link>
       </div>
     </div>

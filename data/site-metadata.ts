@@ -15,12 +15,6 @@ export const SITE_METADATA = {
   telegram: 'https://t.me/shalunbdk',
   locale: 'ru-RU',
   stickyNav: true,
-  analytics: {
-    umamiAnalytics: {
-      websiteId: process.env.NEXT_UMAMI_ID,
-      shareUrl: 'https://cloud.umami.is/share/Ah7bGmJVDqtCROFG/www.shbdk.ru',
-    },
-  },
   newsletter: {
     // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus, beehive
     // Please add your .env file and modify it according to your selection

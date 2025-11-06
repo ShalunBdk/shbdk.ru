@@ -163,17 +163,11 @@ export function AuthorLayout({ children, content }: Props) {
                 .
               </p>
               <p>
-                Сайт был взят у{' '}
-                <a href="https://github.com/metgen/metalnikovg.ru/tree/main" target="_blank">
-                  metalnikovg
-                </a>{' '}
-              </p>
-              <p>
-                Мой{' '}
+                Исходный код сайта доступен в моем{' '}
                 <a href="https://github.com/shalunbdk/shbdk.ru" target="_blank">
-                  Github репозиторий
-                </a>{' '}
-                для этого сайта.
+                  Github репозитории
+                </a>
+                .
               </p>
             </div>
             <div>

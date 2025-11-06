@@ -6,16 +6,16 @@ export const PROJECTS: Project[] = [
     title: 'Персональный веб-сайт',
     description: 'Заметки по IT тематике',
     imgSrc: '/static/images/projects/site_screen.png',
-    repo: 'shalulbdk/shbdk.ru',
+    repo: 'shalunbdk/shbdk.ru',
     // url: 'https://www.shbdk.ru/', //
-    builtWith: ['NextJS', 'Tailwind_CSS', 'Typescript', 'Umami'],
+    builtWith: ['NextJS', 'Tailwind_CSS', 'Typescript'],
   },
   {
     type: 'work',
     title: 'EXIF-галерея',
     description: 'Галлерея',
     imgSrc: '/static/images/projects/gallery.png',
-    repo: 'metgen/exif-gallery',
+    repo: 'shalunbdk/exif-gallery',
     builtWith: ['Vercel', 'GitHub', 'Typescript', 'Cloudflare'],
   },
   {
@@ -23,7 +23,7 @@ export const PROJECTS: Project[] = [
     title: 'MKT-monitoring',
     description: 'Мониторинг устройств Mikrotik',
     imgSrc: '/static/images/projects/mkt-monitoring.png',
-    repo: 'metgen/mkt_monitoring',
+    repo: 'shalunbdk/mkt_monitoring',
     builtWith: ['Grafana', 'Prometheus', 'Docker'],
   },
 ]
