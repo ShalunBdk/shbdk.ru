@@ -45,6 +45,9 @@ import Nginx from '~/icons/nginx.svg'
 import Docker from '~/icons/docker.svg'
 import Cloudflare from '~/icons/cloudflare.svg'
 import Ubuntu from '~/icons/ubuntu.svg'
+import Express from '~/icons/express.svg'
+import PostgreSQL from '~/icons/postgresql.svg'
+import Redis from '~/icons/redis.svg'
 
 export let BrandsMap = {
   React: {
@@ -242,6 +245,18 @@ export let BrandsMap = {
   Ubuntu: {
     Icon: Ubuntu,
     url: 'https://ubuntu.com/',
+  },
+  Express: {
+    Icon: Express,
+    url: 'https://expressjs.com/',
+  },
+  PostgreSQL: {
+    Icon: PostgreSQL,
+    url: 'https://www.postgresql.org/',
+  },
+  Redis: {
+    Icon: Redis,
+    url: 'https://redis.io/',
   },
 }
 
