@@ -5,7 +5,8 @@ import 'remark-github-blockquote-alert/alert.css'
 
 import clsx from 'clsx'
 import type { Metadata } from 'next'
-import { JetBrains_Mono, Nunito, Playpen_Sans } from 'next/font/google'
+// Temporarily disabled Google Fonts for static build (uncomment for production with internet access)
+// import { JetBrains_Mono, Nunito, Playpen_Sans } from 'next/font/google'
 import type { SearchConfig } from 'pliny/search'
 import { SearchProvider } from 'pliny/search'
 import { Footer } from '~/components/footer'
@@ -14,27 +15,44 @@ import { TiltedGridBackground } from '~/components/ui/tilted-grid-background'
 import { SITE_METADATA } from '~/data/site-metadata'
 import { ThemeProviders } from './theme-providers'
 
-const FONT_PLAYPEN_SANS = Playpen_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['800'],
+// Fallback to system fonts when Google Fonts are disabled
+const FONT_PLAYPEN_SANS = {
   variable: '--font-playpen-sans',
-})
+  className: '',
+}
 
-const FONT_NUNITO = Nunito({
-  subsets: ['latin'],
-  display: 'swap',
-  style: ['normal', 'italic'],
-  weight: ['400', '500', '600', '700', '800'],
+const FONT_NUNITO = {
   variable: '--font-nunito',
-})
+  className: '',
+}
 
-const FONT_JETBRAINS_MONO = JetBrains_Mono({
-  weight: ['400', '500'],
-  subsets: ['latin'],
-  display: 'swap',
+const FONT_JETBRAINS_MONO = {
   variable: '--font-jetbrains-mono',
-})
+  className: '',
+}
+
+// Uncomment these when deploying with internet access:
+// const FONT_PLAYPEN_SANS = Playpen_Sans({
+//   subsets: ['latin'],
+//   display: 'swap',
+//   weight: ['800'],
+//   variable: '--font-playpen-sans',
+// })
+
+// const FONT_NUNITO = Nunito({
+//   subsets: ['latin'],
+//   display: 'swap',
+//   style: ['normal', 'italic'],
+//   weight: ['400', '500', '600', '700', '800'],
+//   variable: '--font-nunito',
+// })
+
+// const FONT_JETBRAINS_MONO = JetBrains_Mono({
+//   weight: ['400', '500'],
+//   subsets: ['latin'],
+//   display: 'swap',
+//   variable: '--font-jetbrains-mono',
+// })
 
 export let metadata: Metadata = {
   metadataBase: new URL(SITE_METADATA.siteUrl),

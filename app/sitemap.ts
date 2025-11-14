@@ -2,6 +2,8 @@ import { allBlogs, allSnippets } from 'contentlayer/generated'
 import type { MetadataRoute } from 'next'
 import { SITE_METADATA } from '~/data/site-metadata'
 
+export const dynamic = 'force-static'
+
 export default function sitemap(): MetadataRoute.Sitemap {
   let siteUrl = SITE_METADATA.siteUrl
   let blogRoutes = allBlogs

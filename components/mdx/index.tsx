@@ -17,7 +17,7 @@ export const MDX_COMPONENTS: MDXComponents = {
   },
   TOCInline,
   Twemoji,
-  a: Link,
+  a: (props: any) => <Link {...props} />,
   pre: Pre,
   table: TableWrapper,
   BlogNewsletterForm,

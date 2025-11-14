@@ -54,9 +54,10 @@ const securityHeaders = [
   },
 ]
 
-const output = process.env.EXPORT ? 'export' : undefined
+// Enable static export for SSG-only hosting
+const output = 'export'
 const basePath = process.env.BASE_PATH || undefined
-const unoptimized = process.env.UNOPTIMIZED ? true : undefined
+const unoptimized = true // Required for static export
 
 /**
  * @type {import('next/dist/next-server/server/config').NextConfig}
