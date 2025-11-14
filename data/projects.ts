@@ -13,7 +13,7 @@ export const PROJECTS: Project[] = [
     type: 'work',
     title: 'Soroka Food',
     description: 'Fullstack кулинарный блог с админ-панелью, модерацией комментариев и защитой от спама',
-    imgSrc: '/static/images/projects/soroka-food.png',
+    imgSrc: '/static/images/projects/soroka-food.webp',
     repo: 'shalunbdk/soroka-food',
     builtWith: ['React', 'Typescript', 'Express', 'PostgreSQL', 'Prisma', 'Docker', 'Redis'],
   },
@@ -21,7 +21,7 @@ export const PROJECTS: Project[] = [
     type: 'work',
     title: 'Персональный веб-сайт',
     description: 'Заметки по IT тематике',
-    imgSrc: '/static/images/projects/site_screen.png',
+    imgSrc: '/static/images/projects/site_screen.webp',
     repo: 'shalunbdk/shbdk.ru',
     // url: 'https://www.shbdk.ru/', //
     builtWith: ['NextJS', 'Tailwind_CSS', 'Typescript'],
